@@ -2,3 +2,5 @@
 /.pytest_cache
 Pipfile
 Pipfile.lock
+/__pycache__
+pages/__pycache__
