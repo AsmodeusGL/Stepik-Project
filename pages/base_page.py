@@ -16,3 +16,21 @@ class BasePage:
         except NoSuchElementException:
             return False
         return True
+
+    def is_login_in_url(self):
+        try:
+            return 'login' in self.browser.current_url
+        except NoSuchElementException:
+            return False
+
+    def is_login_form(self, how, what):
+        try:
+            return self.browser.find_element(how, what)
+        except NoSuchElementException:
+            return False
+
+    def is_register_form(self, how, what):
+        try:
+            return self.browser.find_element(how, what)
+        except NoSuchElementException:
+            return False

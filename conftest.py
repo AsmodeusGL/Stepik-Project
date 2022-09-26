@@ -11,13 +11,13 @@ def browser(request):
     page_language = request.config.getoption('language')
     match page_language:
         case 'es':
-            print('\nBrowser launched on Spanish language\n')
+            print('\nBrowser launched on Spanish language')
         case 'en':
-            print('\nBrowser launched on English language\n')
+            print('\nBrowser launched on English language')
         case 'fr':
-            print('\nBrowser launched on French language\n')
+            print('\nBrowser launched on French language')
         case _:
-            print(f'\nBrowser launched on {page_language} language\n')
+            print(f'\nBrowser launched on {page_language} language')
 
     options = webdriver.ChromeOptions()
     options.add_experimental_option('prefs', {'intl.accept_languages': page_language})
