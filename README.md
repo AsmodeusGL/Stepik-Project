@@ -1,1 +1,1 @@
-# Final project from stepik course
+# Stepik-Project
