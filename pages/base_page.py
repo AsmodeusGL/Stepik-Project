@@ -1,8 +1,9 @@
 import math
-import time
 
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import NoSuchElementException, NoAlertPresentException
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as ec
+from selenium.common.exceptions import NoSuchElementException, NoAlertPresentException, TimeoutException
 
 
 class BasePage:
@@ -92,3 +93,18 @@ class BasePage:
                 .find_element(By.TAG_NAME, 'strong').text
         except NoSuchElementException:
             return False
+
+    def is_not_element_present(self, how, what, timeout=4):
+        try:
+            WebDriverWait(self.browser, timeout).until(ec.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return True
+        return False
+
+    def is_disappeared(self, how, what, timeout=4):
+        try:
+            WebDriverWait(self.browser, timeout, 1, TimeoutException). \
+                until_not(ec.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return False
+        return True
