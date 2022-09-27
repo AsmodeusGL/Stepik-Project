@@ -17,4 +17,9 @@ class AddToBasket:
 
 
 class ProductPageLocators:
-    SUCCESS_MESSAGE = (By.CSS_SELECTOR, '.btn.btn-lg.btn-primary.btn-add-to-basket')
+    SUCCESS_MESSAGE = (By.CSS_SELECTOR, '.col-sm-6.product_main')
+
+
+class BasePageLocators:
+    LOGIN_LINK = (By.ID, "login_link")
+    LOGIN_LINK_INVALID = (By.ID, "login_link_inc")
