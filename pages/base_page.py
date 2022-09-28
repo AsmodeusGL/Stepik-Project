@@ -17,10 +17,9 @@ class BasePage:
 
     def is_element_present(self, how, what):
         try:
-            self.browser.find_element(how, what)
+            return self.browser.find_element(how, what)
         except NoSuchElementException:
             return False
-        return True
 
     def is_login_in_url(self):
         try:
@@ -92,3 +91,19 @@ class BasePage:
             self.browser.find_element(By.CLASS_NAME, 'btn-group').find_element(By.TAG_NAME, 'a').click()
         except NoSuchElementException:
             return False
+
+    def register_form(self, email, password):
+        try:
+            self.go_to_login_page()
+            register_form = self.browser.find_element(By.ID, 'register_form')
+            register_form.find_element(By.NAME, 'registration-email').send_keys(email)
+            register_form.find_element(By.NAME, 'registration-password1').send_keys(password)
+            register_form.find_element(By.NAME, 'registration-password2').send_keys(password)
+            self.browser.find_element(By.NAME, 'registration_submit').click()
+            return True
+        except NoSuchElementException:
+            return False
+
+    def should_be_authorized_user_from_register_form(self):
+        return self.is_element_present(*BasePageLocators.USER_ICON), \
+            "User icon is not presented, probably unauthorised user"

@@ -23,7 +23,7 @@ def browser(request):
     options.add_experimental_option('prefs', {'intl.accept_languages': page_language})
 
     browser = webdriver.Chrome(options=options)
-    browser.implicitly_wait(5)
+    browser.implicitly_wait(10)
 
     yield browser
 

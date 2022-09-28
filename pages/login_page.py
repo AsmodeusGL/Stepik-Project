@@ -16,3 +16,12 @@ class LoginPage(BasePage):
 
     def should_be_register_form(self):
         assert self.is_register_form(*LoginPageLocators.REGISTER_FORM), 'Current link has no register form!'
+
+    def register_new_user(self, email, password):
+        assert self.register_form(email, password)
+
+    def should_be_authorized_user(self):
+        assert self.should_be_authorized_user_from_register_form()
+
+    def add_product_from_product_page(self):
+        assert self.add_product_to_basket(*AddToBasket.ADD_BUTTON)

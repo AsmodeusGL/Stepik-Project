@@ -21,6 +21,7 @@ class ProductPageLocators:
 
 
 class BasePageLocators:
+    USER_ICON = (By.CLASS_NAME, "icon-user")
     LOGIN_LINK = (By.ID, "login_link")
     LOGIN_LINK_INVALID = (By.ID, "login_link_inc")
 
