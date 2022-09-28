@@ -1,6 +1,4 @@
-import time
-
-from .locators import BasePageLocators
+from .locators import *
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -77,3 +75,20 @@ class BasePage:
         except NoSuchElementException:
             return False
 
+    def go_to_basket_from_main_page(self):
+        try:
+            self.browser.find_element(By.CLASS_NAME, 'btn-group').find_element(By.TAG_NAME, 'a').click()
+        except NoSuchElementException:
+            return False
+
+    def should_be_basket_empty(self):
+        try:
+            return 'Your basket is empty.' in self.browser.find_element(*BasketPageLocators.BASKET_EMPTY).text
+        except NoSuchElementException:
+            return False
+
+    def go_to_basket_form_product_page(self):
+        try:
+            self.browser.find_element(By.CLASS_NAME, 'btn-group').find_element(By.TAG_NAME, 'a').click()
+        except NoSuchElementException:
+            return False
