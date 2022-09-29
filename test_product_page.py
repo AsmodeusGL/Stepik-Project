@@ -9,12 +9,18 @@ import time
 
 @pytest.mark.register_user
 class TestUserAddToBasketFromProductPage:
+    @pytest.fixture(scope="function", autouse=True)
+    def setup(self, browser):
+        link = 'https://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/'
+        page = LoginPage(browser, link)
+        page.open()
+        page.register_new_user(f'{time.time()}@fakemail.org', '1664372877')
+
     @pytest.mark.need_review
     def test_user_cant_see_success_message(self, browser):
         link = 'https://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/'
         page = LoginPage(browser, link)
         page.open()
-        page.register_new_user(f'{time.time()}@fakemail.org', '1664372877')
         page.should_be_authorized_user()
 
     def test_user_can_add_product_to_basket(self, browser):
@@ -22,7 +28,6 @@ class TestUserAddToBasketFromProductPage:
         page = LoginPage(browser, link)
         page.open()
         page.add_product_from_product_page()
-        page.register_new_user(f'{time.time()}@fakemail.org', '1664372877')
         page.should_be_authorized_user()
 
 
