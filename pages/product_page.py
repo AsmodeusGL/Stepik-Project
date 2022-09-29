@@ -9,6 +9,9 @@ class ProductPage(BasePage):
     def test_guest_can_go_to_login_page_from_product_page(self):
         assert self.go_to_login_page()
 
+    def test_quest_can_add_product_to_basket_from_product_page(self):
+        assert self.add_product_to_basket(*AddToBasket.ADD_BUTTON)
+
     def test_guest_cant_see_success_message_after_adding_product_to_basket(self):
         self.add_product_to_basket(*AddToBasket.ADD_BUTTON)
         assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \

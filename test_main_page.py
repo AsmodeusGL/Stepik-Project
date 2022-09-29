@@ -22,7 +22,6 @@ class TestLoginFromMainPage:
         page.should_be_login_link()
 
 
-@pytest.fixture(scope="function", autouse=True)
 def test_guest_should_be_passed_few_login_tests(browser):
     link = "https://selenium1py.pythonanywhere.com/ru/accounts/login/"
     page = LoginPage(browser, link)
@@ -30,7 +29,6 @@ def test_guest_should_be_passed_few_login_tests(browser):
     page.go_to_login_page()
 
 
-@pytest.fixture(scope="function", autouse=True)
 def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
     link = 'https://selenium1py.pythonanywhere.com/'
     page = BasketPage(browser, link)
