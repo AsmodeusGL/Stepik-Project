@@ -15,6 +15,9 @@ class AddToBasket:
     ALERT_BASKET = (By.CSS_SELECTOR, '.alert.alert-safe.alert-noicon.alert-success.fade.in')
     BASKET_FORM = (By.CSS_SELECTOR, '.alert.alert-safe.alert-noicon.alert-info.fade.in')
 
+    BUTTON_GROUP = (By.CLASS_NAME, 'btn-group')
+    BUTTON_TAG = (By.TAG_NAME, 'a')
+
 
 class ProductPageLocators:
     SUCCESS_MESSAGE = (By.CSS_SELECTOR, '.col-sm-6.product_main')
@@ -28,3 +31,11 @@ class BasePageLocators:
 
 class BasketPageLocators:
     BASKET_EMPTY = (By.CLASS_NAME, 'content_inner')
+
+
+class RegisterPageLocators:
+    REGISTER_FORM = (By.ID, 'register_form')
+    REGISTRATION_EMAIL = (By.NAME, 'registration-email')
+    REGISTRATION_PASS1 = (By.NAME, 'registration-password1')
+    REGISTRATION_PASS2 = (By.NAME, 'registration-password2')
+    REGISTRATION_SUBMIT = (By.NAME, 'registration_submit')

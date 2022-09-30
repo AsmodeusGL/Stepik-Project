@@ -76,7 +76,7 @@ class BasePage:
 
     def go_to_basket_from_main_page(self):
         try:
-            self.browser.find_element(By.CLASS_NAME, 'btn-group').find_element(By.TAG_NAME, 'a').click()
+            self.browser.find_element(*AddToBasket.BUTTON_GROUP).find_element(*AddToBasket.BUTTON_TAG).click()
         except NoSuchElementException:
             return False
 
@@ -88,18 +88,18 @@ class BasePage:
 
     def go_to_basket_form_product_page(self):
         try:
-            self.browser.find_element(By.CLASS_NAME, 'btn-group').find_element(By.TAG_NAME, 'a').click()
+            self.browser.find_element(*AddToBasket.BUTTON_GROUP).find_element(*AddToBasket.BUTTON_TAG).click()
         except NoSuchElementException:
             return False
 
     def register_form(self, email, password):
         try:
             self.go_to_login_page()
-            register_form = self.browser.find_element(By.ID, 'register_form')
-            register_form.find_element(By.NAME, 'registration-email').send_keys(email)
-            register_form.find_element(By.NAME, 'registration-password1').send_keys(password)
-            register_form.find_element(By.NAME, 'registration-password2').send_keys(password)
-            self.browser.find_element(By.NAME, 'registration_submit').click()
+            register_form = self.browser.find_element(*RegisterPageLocators.REGISTER_FORM)
+            register_form.find_element(*RegisterPageLocators.REGISTRATION_EMAIL).send_keys(email)
+            register_form.find_element(*RegisterPageLocators.REGISTRATION_PASS1).send_keys(password)
+            register_form.find_element(*RegisterPageLocators.REGISTRATION_PASS2).send_keys(password)
+            self.browser.find_element(*RegisterPageLocators.REGISTRATION_SUBMIT).click()
             return True
         except NoSuchElementException:
             return False
