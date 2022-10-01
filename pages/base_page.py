@@ -1,6 +1,3 @@
-from .locators import *
-
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
@@ -61,49 +58,48 @@ class BasePage:
         except NoSuchElementException:
             return False
 
-    def should_be_login_link(self):
+    def should_be_login_link(self, how, what):
         try:
-            return self.browser.find_element(*BasePageLocators.LOGIN_LINK)
+            return self.browser.find_element(how, what)
         except NoSuchElementException:
             return False
 
-    def go_to_login_page(self):
+    def go_to_login_page(self, how, what):
         try:
-            self.browser.find_element(*BasePageLocators.LOGIN_LINK).click()
+            self.browser.find_element(how, what).click()
             return True
         except NoSuchElementException:
             return False
 
-    def go_to_basket_from_main_page(self):
+    def go_to_basket_from_main_page(self, how_1, what_1, how_2, what_2):
         try:
-            self.browser.find_element(*AddToBasket.BUTTON_GROUP).find_element(*AddToBasket.BUTTON_TAG).click()
+            self.browser.find_element(how_1, what_1).find_element(how_2, what_2).click()
         except NoSuchElementException:
             return False
 
-    def should_be_basket_empty(self):
+    def should_be_basket_empty(self, how, what):
         try:
-            return 'Your basket is empty.' in self.browser.find_element(*BasketPageLocators.BASKET_EMPTY).text
+            return 'Your basket is empty.' in self.browser.find_element(how, what).text
         except NoSuchElementException:
             return False
 
-    def go_to_basket_form_product_page(self):
+    def go_to_basket_form_product_page(self, how_1, what_1, how_2, what_2):
         try:
-            self.browser.find_element(*AddToBasket.BUTTON_GROUP).find_element(*AddToBasket.BUTTON_TAG).click()
+            self.browser.find_element(how_1, what_1).find_element(how_2, what_2).click()
         except NoSuchElementException:
             return False
 
-    def register_form(self, email, password):
+    def register_form(self, email, password, content):
         try:
-            self.go_to_login_page()
-            register_form = self.browser.find_element(*RegisterPageLocators.REGISTER_FORM)
-            register_form.find_element(*RegisterPageLocators.REGISTRATION_EMAIL).send_keys(email)
-            register_form.find_element(*RegisterPageLocators.REGISTRATION_PASS1).send_keys(password)
-            register_form.find_element(*RegisterPageLocators.REGISTRATION_PASS2).send_keys(password)
-            self.browser.find_element(*RegisterPageLocators.REGISTRATION_SUBMIT).click()
+            register_form = self.browser.find_element(content[0], content[1])
+            register_form.find_element(content[2], content[3]).send_keys(email)
+            register_form.find_element(content[4], content[5]).send_keys(password)
+            register_form.find_element(content[6], content[7]).send_keys(password)
+            self.browser.find_element(content[8], content[9]).click()
             return True
         except NoSuchElementException:
             return False
 
-    def should_be_authorized_user_from_register_form(self):
-        return self.is_element_present(*BasePageLocators.USER_ICON), \
+    def should_be_authorized_user_from_register_form(self, how, what):
+        return self.is_element_present(how, what), \
             "User icon is not presented, probably unauthorised user"

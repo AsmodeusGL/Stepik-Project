@@ -4,10 +4,10 @@ from .locators import *
 
 class ProductPage(BasePage):
     def test_guest_should_see_login_link_on_product_page(self):
-        assert self.should_be_login_link()
+        assert self.should_be_login_link(*BasePageLocators.LOGIN_LINK)
 
     def test_guest_can_go_to_login_page_from_product_page(self):
-        assert self.go_to_login_page()
+        assert self.go_to_login_page(*BasePageLocators.LOGIN_LINK)
 
     def test_quest_can_add_product_to_basket_from_product_page(self):
         assert self.add_product_to_basket(*AddToBasket.ADD_BUTTON)
